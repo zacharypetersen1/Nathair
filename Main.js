@@ -1,12 +1,16 @@
 //Contains the initializer and main game loop
 
-$(document).ready(init);
+$(document).ready(initDocument);
 
 var docWidth, docHeight;
 var canvWidth, canvHeight;
 var ctx;
+var pastTime, curTime, deltaTime;   //store time at which each frame is called
+var updAfter = 1000, sinceLastUpd;  //time increment for update and time since last update
+var drawTime, drawInterval = 2000, drawScalar; //used for pulsing draw effects
 
-function init() {
+//Sets up canvas for the game
+function initDocument() {
 	console.log("ready");
 	docWidth = $(document).width();
 	docHeight = $(document).height();
@@ -18,12 +22,55 @@ function init() {
 	canvWidth = canvas.width();
 	canvHeight = canvas.height();
 	
-	//draw background
-	updGridDimension();
-	drawBG();
-	drawGrid();
+	//initialize the game
+	initGame();
+}
+
+
+//Initializes game
+function initGame(){
+    
+    //draw background
+    updGridDimension();
+    drawBG();
+    drawGrid();
+    
+    //Initialize loop
+    pastTime = Date.now();
+    sinceLastUpd = 0;
+    drawTime = 0;
+    setInterval(gameLoop, 60);
+}
+
+function gameLoop() {
+    //get delta time
+    curTime = Date.now();
+    deltaTime = curTime - pastTime;
+   
+    //trigger update if sufficient amount of time has passed
+    sinceLastUpd += deltaTime;
+    if(sinceLastUpd >= updAfter) {
+        sinceLastUpd -= updAfter;
+        update();
+    }
+    
+    //get drawScalar and call draw
+    //EVENTUALLY THIS WILL ONLY OCCUR IF GAME IS ACTIVE
+    drawTime += deltaTime;
+    drawTime = drawTime % drawInterval;
+    drawScalar = Math.sin(drawTime * 2 * Math.PI / drawInterval);
+    draw();
+    
+    //prep time for next frame
+    pastTime = curTime;
 }
 
 function update() {
-	
+
+}
+
+function draw() {
+    //draw background
+    drawBG();
+    drawGrid();
 }
