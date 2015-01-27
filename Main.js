@@ -3,24 +3,25 @@
 $(document).ready(init);
 
 var docWidth, docHeight;
-var width, height;
-var context;
+var canvWidth, canvHeight;
+var ctx;
 
 function init() {
 	console.log("ready");
 	docWidth = $(document).width();
 	docHeight = $(document).height();
-	console.log(docWidth + " " + docHeight);
+	console.log("doc size: " + docWidth + " " + docHeight);
 	
 	//get the canvas and context
 	canvas = $("#canvas");
-	context = canvas[0].getContext('2d');
-	width = canvas.width();
-	height = canvas.height();
+	ctx = canvas[0].getContext('2d');
+	canvWidth = canvas.width();
+	canvHeight = canvas.height();
 	
 	//draw background
-	context.fillStyle = '#5050ff';
-	context.fillRect(0,0, width,height);
+	updGridDimension();
+	drawBG();
+	drawGrid();
 }
 
 function update() {
