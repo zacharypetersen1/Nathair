@@ -8,6 +8,7 @@ var ctx;
 var pastTime, curTime, deltaTime;   //store time at which each frame is called
 var updAfter = 1000, sinceLastUpd;  //time increment for update and time since last update
 var drawTime, drawInterval = 2000, drawScalar; //used for pulsing draw effects
+var currentLvl = 0;
 
 //Sets up canvas for the game
 function initDocument() {
@@ -22,6 +23,9 @@ function initDocument() {
 	canvWidth = canvas.width();
 	canvHeight = canvas.height();
 	
+	//initialize the level array
+	storeLevels();
+	
 	//initialize the game
 	initGame();
 }
@@ -30,10 +34,15 @@ function initDocument() {
 //Initializes game
 function initGame(){
     
+    //load current level
+    loadLevel(currentLvl);
+    
     //draw background
     updGridDimension();
     drawBG();
     drawGrid();
+    
+    //set up snake state
     
     //Initialize loop
     pastTime = Date.now();
@@ -43,6 +52,7 @@ function initGame(){
 }
 
 function gameLoop() {
+    
     //get delta time
     curTime = Date.now();
     deltaTime = curTime - pastTime;
@@ -63,10 +73,6 @@ function gameLoop() {
     
     //prep time for next frame
     pastTime = curTime;
-}
-
-function update() {
-
 }
 
 function draw() {

@@ -3,7 +3,7 @@
 
 //used to create playing grid
 var gridX, gridY;           //origin of grid
-var cellCountW = 20, cellCountH = 10; //number of cells wide and high
+var cellCountW, cellCountH; //number of cells wide and high
 var cellSize;               //size of each cell
 var gridWidth, gridHeight;  //total size of grid
 var gridLnSize;             //size of grid lines
