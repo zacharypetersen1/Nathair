@@ -28,5 +28,6 @@ function loadLevel(index) {
     snake = levels[index].initialSnake.splice();
     dir = levels[index].initialDir;
     
-    //Will need to create initial GameFrame here:
+    //reset gameFrames
+    gameFrames = [[0,0]];
 }
