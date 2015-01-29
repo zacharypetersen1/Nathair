@@ -10,20 +10,19 @@ var upPrimed    = false;
 //Handles keydown event
 document.addEventListener("keydown", function(e) {
 
+    if(e.keyCode == 82)
+        gameState = 2;
+
     //Check for direction change if gameState is "forward time"
     if(gameState == 1)
     {
         //Get direction of key that was pressed
         var thisKey = -1;
         switch(e.keyCode) {
-            case 37:    thisKey = leftPrimed ? 4 : -1; 
-                        leftPrimed = false; break;
-            case 38:    thisKey = upPrimed ? 6 : -1;
-                        upPrimed = false; break;
-            case 39:    thisKey = rightPrimed ? 0 : -1;
-                        upPrimed = false; break;
-            case 40:    thisKey = downPrimed ? 2 : -1;
-                        downPrimed = false; break;
+            case 37:    thisKey = 4; break;
+            case 38:    thisKey = 6; break;
+            case 39:    thisKey = 0; break;
+            case 40:    thisKey = 2; break;
         }
         
         //update snake's direction if keypress was not arbitrary
@@ -35,12 +34,14 @@ document.addEventListener("keydown", function(e) {
 
 //Handles keyup event
 document.addEventListener("keyup", function(e) {
-    switch(e.keyCode) {
+    if(e.keyCode == 82)
+        gameState = 1;
+    /*switch(e.keyCode) {
         case 37: leftPrimed = true; break;
         case 38: upPrimed   = true; break;
         case 39: rightPrimed = true; break;
         case 40: downPrimed = true; break;
-    }
+    }*/
 });
 
 

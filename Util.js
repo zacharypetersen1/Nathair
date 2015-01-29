@@ -19,3 +19,15 @@ function dupCoordArray(original) {
         newArray[i] = [original[i][0], original[i][1]];
     return newArray;
 }
+
+//returns the coordinates of the location next to the original coordinates in the dir specified
+function getCoords(fromHere, direction) {
+    var newCoords = [fromHere[0], fromHere[1]];
+    switch(direction) {
+        case 0: newCoords[0]++; break;
+        case 2: newCoords[1]++; break;
+        case 4: newCoords[0]--; break;
+        case 6: newCoords[1]--; break;
+    }
+    return newCoords;
+}
