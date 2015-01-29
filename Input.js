@@ -49,5 +49,7 @@ document.addEventListener("keyup", function(e) {
 function updateDir(newDir) {
     //prevent user from moving snake's head directly back into itself
     if(newDir != getDirection(snake[0], snake[1]))
-        dir = newDir;
+        //Don't set the direction if it will just cause a collision
+        if(  !checkCollision(getCoords(snake[0], newDir))  )
+            dir = newDir;
 }

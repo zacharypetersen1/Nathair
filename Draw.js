@@ -7,6 +7,7 @@ function draw() {
     drawBG();
     drawGrid();
     drawSnake();
+    drawFruit(fruitPos);
 }
 
 
@@ -56,4 +57,12 @@ function drawSnake() {
 
 function drawBodySegment(position) {
     ctx.fillRect(gridX+position[0]*cellSize, gridY+position[1]*cellSize, cellSize,cellSize);
+}
+
+function drawFruit(position) {
+    ctx.fillStyle = rgbToHex(160, 80, 80);
+    ctx.beginPath();
+    ctx.arc(gridX + position[0]*cellSize+cellSize/2, gridY+position[1]*cellSize+cellSize/2,
+            cellSize/2, 0, Math.PI*2);
+    ctx.fill();
 }

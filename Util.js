@@ -31,3 +31,17 @@ function getCoords(fromHere, direction) {
     }
     return newCoords;
 }
+
+
+//checks if there is collision at specified coordinates
+function checkCollision(checkHere) {
+    if(checkHere[0] < 0 || checkHere[0] >= cellCountW || 
+       checkHere[1] < 0 || checkHere[1] >= cellCountH)
+       return true;
+    for(i in snake) {
+        if(checkHere[0] == snake[0] && checkHere[1] == snake[1])
+            return true;
+    }
+    
+    return false;
+}
