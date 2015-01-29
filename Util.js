@@ -39,7 +39,7 @@ function checkCollision(checkHere) {
        checkHere[1] < 0 || checkHere[1] >= cellCountH)
        return true;
     for(i in snake) {
-        if(checkHere[0] == snake[0] && checkHere[1] == snake[1])
+        if(checkHere[0] == snake[i][0] && checkHere[1] == snake[i][1])
             return true;
     }
     

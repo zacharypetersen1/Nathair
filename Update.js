@@ -4,6 +4,7 @@ var gameFrames;
 var snake;              //stores position of snake
 var dir;                //current direction of snake's forward-time movement
 var fruitPos;
+var addToTail = 0;      //If this # is > 0, one tail seg will be added per update
 
 function update() {
     
@@ -20,11 +21,17 @@ function update() {
         
         //adjust snake
         gameFrames.push(getDirection(snake[snake.length-2], snake[snake.length-1]));
-        if(!fruitCol)
-            snake.pop();    //if ate fruit, don't pop tail
-        else
-            genFruit();
         snake.unshift(newLocation);
+        if(fruitCol)
+            addToTail += 3;
+        if(addToTail > 0)
+            addToTail --;
+        else
+           snake.pop();    //if need to add tail segment, don't pop tail     
+        
+        //If there was a collision reset fruit (must be after adjusting snake)
+        if(fruitCol)
+            genFruit();
     }
     //This block runs if game is moving in backward time
     else if(gameState == 2) {
