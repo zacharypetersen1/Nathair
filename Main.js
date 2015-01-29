@@ -5,6 +5,7 @@ $(document).ready(initDocument);
 var docWidth, docHeight;
 var canvWidth, canvHeight;
 var ctx;
+var gameState = 0; //0=menu - 1=ingame(forward time) - 2=ingame(backward time) - 3=ingame(stuck) 
 var pastTime, curTime, deltaTime;   //store time at which each frame is called
 var updAfter = 1000, sinceLastUpd;  //time increment for update and time since last update
 var drawTime, drawInterval = 2000, drawScalar; //used for pulsing draw effects
@@ -46,6 +47,7 @@ function initGame(){
     pastTime = Date.now();
     sinceLastUpd = 0;
     drawTime = 0;
+    gameState = 1;
     setInterval(gameLoop, 60);
 }
 
