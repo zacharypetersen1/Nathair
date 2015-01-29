@@ -1,6 +1,15 @@
 //Contains drawing methods for various game objects
 
 
+//Main draw function called from game loop
+function draw() {
+    //draw background
+    drawBG();
+    drawGrid();
+    drawSnake();
+}
+
+
 //converts RGB value to Hex
 function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
@@ -38,4 +47,13 @@ function drawGrid() {
         ctx.lineTo(gridX + gridWidth, gridY + cellSize*i);
         ctx.stroke();
     }
+}
+
+function drawSnake() {
+    ctx.fillStyle = rgbToHex(60, 60, 150);
+    for(i in snake) drawBodySegment(snake[i]);
+}
+
+function drawBodySegment(position) {
+    ctx.fillRect(gridX+position[0]*cellSize, gridY+position[1]*cellSize, cellSize,cellSize);
 }

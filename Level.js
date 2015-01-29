@@ -25,7 +25,7 @@ function storeLevels() {
 function loadLevel(index) {
     cellCountW = levels[index].lvlCountW;
     cellCountH = levels[index].lvlCountH;
-    snake = levels[index].initialSnake.splice();
+    snake = dupCoordArray(levels[index].initialSnake);
     dir = levels[index].initialDir;
     
     //reset gameFrames

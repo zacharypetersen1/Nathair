@@ -10,3 +10,12 @@ function getDirection(fromHere, toHere) {
         case false: return fromHere[0] < toHere[0] ? 0 : 4;
     }
 }
+
+
+//Duplicates coordinate array while leaving the original untouched
+function dupCoordArray(original) {
+    var newArray = [];
+    for(i in original)
+        newArray[i] = [original[i][0], original[i][1]];
+    return newArray;
+}

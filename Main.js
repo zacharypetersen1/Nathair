@@ -42,8 +42,6 @@ function initGame(){
     drawBG();
     drawGrid();
     
-    //set up snake state
-    
     //Initialize loop
     pastTime = Date.now();
     sinceLastUpd = 0;
@@ -73,10 +71,4 @@ function gameLoop() {
     
     //prep time for next frame
     pastTime = curTime;
-}
-
-function draw() {
-    //draw background
-    drawBG();
-    drawGrid();
 }
