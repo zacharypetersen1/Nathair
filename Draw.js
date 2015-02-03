@@ -51,11 +51,21 @@ function drawGrid() {
 }
 
 function drawSnake() {
-    ctx.fillStyle = rgbToHex(60, 60, 150);
-    for(i in snake) drawBodySegment(snake[i]);
+    
+    var count = -1;
+    var bodyScaler;
+    
+    for(i in snake)
+    {   
+        count++;
+        count = count % 4;
+        bodyScaler = Math.cos(count*Math.PI*2/4);
+        drawBodySegment(snake[i], bodyScaler);
+    }
 }
 
-function drawBodySegment(position) {
+function drawBodySegment(position, scaler) {
+    ctx.fillStyle = rgbToHex(Math.floor(60+10*scaler), Math.floor(60+10*scaler), Math.floor(150+20*scaler));
     ctx.fillRect(gridX+position[0]*cellSize, gridY+position[1]*cellSize, cellSize,cellSize);
 }
 

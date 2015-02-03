@@ -39,6 +39,10 @@ function initGame(){
     loadLevel(currentLvl);
     genFruit();
     
+    //reset game history 
+    gameFrames = [[0,0]];
+    wasGrowth = [0];
+    
     //draw background
     updGridDimension();
     drawBG();
