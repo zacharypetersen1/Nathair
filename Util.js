@@ -32,6 +32,12 @@ function getCoords(fromHere, direction) {
     return newCoords;
 }
 
+//Returns the actual pixel location of the specified grid cell's origin point
+function getPxPos(theseCoords) {
+    var pxPos = [gridX + theseCoords[0] * cellSize, gridY + theseCoords[1] * cellSize];
+    return pxPos;
+}
+
 
 //checks if there is collision at specified coordinates
 function checkCollision(checkHere) {

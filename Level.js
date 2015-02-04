@@ -14,8 +14,8 @@ function Level() {
 //Creates series of levels and stores them in array
 function storeLevels() {
     levels[0] = new Level();
-    levels[0].lvlCountW = 4;
-    levels[0].lvlCountH = 4;
+    levels[0].lvlCountW = 10;
+    levels[0].lvlCountH = 10;
     levels[0].initialSnake = [[1,1], [0,1], ];
     levels[0].initialDir = 0;
 }
