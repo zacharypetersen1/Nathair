@@ -11,7 +11,7 @@ var addToTail = 0;      //If this # is > 0, tail segment will be added
 
 function update() {
     //This block runs if game is moving in forward time
-    if(gameState == 1) {
+    if(gameTimeState == 0) {
         
         //Find the next pos that snake will move to, exit function if that pos triggers collision
         var newLocation = getCoords(snake[0], dir);
@@ -47,7 +47,7 @@ function update() {
         lastHeadPos = snake[0];
     }
     //This block runs if game is moving in backward time
-    else if(gameState == 2) {
+    else if(gameTimeState == 1) {
         //Do nothing if gameFrames is at first index
         if(gameFrames.length != 1)
         {

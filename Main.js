@@ -5,7 +5,8 @@ $(document).ready(initDocument);
 var docWidth, docHeight;
 var canvWidth, canvHeight;
 var ctx;
-var gameState = 0; //0=menu - 1=ingame(forward time) - 2=ingame(backward time) - 3=ingame(stuck) 
+var currentState = [];    //current game state stack
+var gameTimeState = 0; //0=forward time - 1=backward time - 2=stuck- game time is stopped
 var pastTime, curTime, deltaTime;   //store time at which each frame is called
 var updAfter = 200, sinceLastUpd;  //time increment for update and time since last update
 var drawTime, drawInterval = 2000, drawScalar; //used for pulsing draw effects
@@ -33,26 +34,16 @@ function initDocument() {
 
 
 //Initializes game
-function initGame(){
-    
-    //load current level
-    loadLevel(currentLvl);
-    genFruit();
-    
-    //reset game history 
-    gameFrames = [[0,0]];
-    wasGrowth = [0];
-    
-    //draw background
-    updGridDimension();
-    drawBG();
-    drawGrid();
+function initGame() {
+
+    //Push main menu onto game stack
+    currentState.push(menuBuilder("main_menu"));
     
     //Initialize loop
     pastTime = Date.now();
     sinceLastUpd = 0;
     drawTime = 0;
-    gameState = 1;
+    gameTimeState = 0;
     setInterval(gameLoop, 60);
 }
 
@@ -62,19 +53,8 @@ function gameLoop() {
     curTime = Date.now();
     deltaTime = curTime - pastTime;
    
-    //trigger update if sufficient amount of time has passed
-    sinceLastUpd += deltaTime;
-    if(sinceLastUpd >= updAfter) {
-        sinceLastUpd -= updAfter;
-        update();
-    }
-    
-    //get drawScalar and call draw
-    //EVENTUALLY THIS WILL ONLY OCCUR IF GAME IS ACTIVE
-    drawTime += deltaTime;
-    drawTime = drawTime % drawInterval;
-    drawScalar = Math.sin(drawTime * 2 * Math.PI / drawInterval);
-    draw();
+    //call the loop() function on whatever the current game state is
+    currentState[currentState.length-1].loop(deltaTime);
     
     //prep time for next frame
     pastTime = curTime;

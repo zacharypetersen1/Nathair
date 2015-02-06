@@ -21,10 +21,19 @@ function storeLevels() {
 }
 
 
-//Loads values stored in level based on given index
-function loadLevel(index) {
+//Initializes level so that it is ready to be played
+function initLevel(index){   
+    //load current level
     cellCountW = levels[index].lvlCountW;
     cellCountH = levels[index].lvlCountH;
     snake = dupCoordArray(levels[index].initialSnake);
     dir = levels[index].initialDir;
+    genFruit();
+    
+    //reset game history 
+    gameFrames = [[0,0]];
+    wasGrowth = [0];
+    
+    //update dimensions of grid
+    updGridDimension();
 }
