@@ -1,7 +1,7 @@
-//Contains drawing methods for various game objects
+//Contains utility drawing methods along with draw() function called from InGameState
 
 
-//Main draw function called from game loop
+//Main draw function called from game loop within InGameState
 function draw() {
     //draw background
     drawBG();

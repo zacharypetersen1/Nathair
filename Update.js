@@ -1,4 +1,4 @@
-//Contains update function
+//Contains update function that is called from InGameState object
 
 var gameFrames;     //an array that stores history of snake's movement directions
 var wasGrowth;      //an array that stores history of snake's growth
