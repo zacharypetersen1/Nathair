@@ -9,27 +9,50 @@ function menuBuilder(type) {
             //add play button to main menu
             var temp = new MenuComponent();
             temp.name = "Play";
-            temp.x = 50;
-            temp.y = 50;
+            temp.x = .5;
+            temp.y = .2;
             temp.onEvent = function() {
                 currentLevel = 0;
                 initLevel(currentLevel);
                 currentState.push(new InGameState);
             };
-            new_menu.menu_components.push(temp);
+            new_menu.selectable_components.push(temp);
             //add controls button
             temp = new MenuComponent();
             temp.name = "Controls";
-            temp.x = 50;
-            temp.y = 70;
+            temp.x = .5;
+            temp.y = .4;
             temp.onEvent = function() {
-                console.log("go to controls menu");
+                currentState.push(menuBuilder("controls_menu"));
             };
-            new_menu.menu_components.push(temp);
-            //TODO add controls to main menu
+            new_menu.selectable_components.push(temp);
+            
             break;
         case "controls_menu": 
-            //TODO add components to conrols menu
+            //TODO add text components to controls menu
+            //add 'back' button- returns to main menu
+            var temp = new MenuComponent();
+            temp.name = "Back";
+            temp.x = .5;
+            temp.y = .8;
+            temp.onEvent = function() {
+                currentState.pop();
+            };
+            new_menu.selectable_components.push(temp);
+            //add controls info
+            temp = new MenuComponent();
+            temp.name = "Use arrow keys to direct snake";
+            temp.x = .5;
+            temp.y = .4;
+            temp.txtSize = .08;
+            new_menu.decoration_components.push(temp);
+            //add controls info
+            temp = new MenuComponent();
+            temp.name = "Hold 'R' key to re-wind time";
+            temp.x = .5;
+            temp.y = .6;
+            temp.txtSize = .08;
+            new_menu.decoration_components.push(temp);
             break;
     }
     //return the new menu object
@@ -38,27 +61,36 @@ function menuBuilder(type) {
 
 //Provides menu structure that acts as a game state
 function Menu () {
-    //TODO define selectable and non-selectable components list
-    this.menu_components = [];
+    //list of menu components that will be treated as selectable
+    this.selectable_components = [];
+    //list of menu components that will only be drawn- i.e. no selection capabilities
+    this.decoration_components = [];
+    //index of active component within selectable_components
     this.active_component = 0;
 }
 
 //Loop function that is run by all menu objects
 Menu.prototype.loop = function (delta) {
+    //Draw background first
+    drawBG(rgbToHex(255,255,255));
     //Call draw function for all components attached to this menu
-    for(i in this.menu_components) {
+    ctx.textAlign = "center";
+    for(i in this.selectable_components) {
         if(i == this.active_component)
-            this.menu_components[i].draw("active");
-        else this.menu_components[i].draw("inactive");
+            this.selectable_components[i].draw("active");
+        else this.selectable_components[i].draw("inactive");
+    }
+    for(i in this.decoration_components) {
+        this.decoration_components[i].draw("inactive");
     }
 };
 
 //keyDown function that is run by all menu objects
 Menu.prototype.keyDown = function (e) {
     
-    //If 'R' key is pressed, trigger the active menu component
-    if(e.keyCode == 82) {
-        this.menu_components[this.active_component].onEvent();
+    //If 'Enter' key is pressed, trigger the active menu component
+    if(e.keyCode == 13) {
+        this.selectable_components[this.active_component].onEvent();
     }
     //If arrow key is pressed, scroll selection to corresponding MenuComponent
     //Up arrow
@@ -68,7 +100,7 @@ Menu.prototype.keyDown = function (e) {
     }
     //Down arrow
     if(e.keyCode == 40) {
-        if(this.active_component < this.menu_components.length-1)
+        if(this.active_component < this.selectable_components.length-1)
             this.active_component++;
     }
     
@@ -80,12 +112,17 @@ Menu.prototype.keyUp = function (e) {
 };
 
 
-//Provides structure for components or 'buttons' that can be added to menu objects
+//TODO define non-selectable (maybe text?) components
+    
+
+//Provides structure for components that can act as 'buttons' or 'decorations' for menu objects
 function MenuComponent() {
     //Name should be overwritten after creating menuComponent
     this.name = "No Name Asigned";
+    //All position and size variables are treated as percentages of the canvas size
     this.x = 0;
     this.y = 0;
+    this.txtSize = .1;
     //TODO add more variables to customize drawing of this component
     //onEvent() should be overwritten after menuComponent is created
     this.onEvent = function() {
@@ -96,9 +133,11 @@ function MenuComponent() {
 //Draws the component
 MenuComponent.prototype.draw = function(style) {
     //TODO customize draw function based on variables in 'this'
+    var pxSize = Math.floor(this.txtSize*canvHeight);
+    ctx.font = pxSize.toString() + "px Ariel";
     if(style == "active");
         ctx.fillStyle = rgbToHex(255,255,0);
     if(style == "inactive")
         ctx.fillStyle = rgbToHex(0,0,0);
-    ctx.fillText(this.name, this.x, this.y);
+    ctx.fillText(this.name, this.x*canvWidth, this.y*canvHeight);
 };
