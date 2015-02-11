@@ -8,6 +8,7 @@ function Level() {
     this.lvlCountH;
     this.initialSnake = [];
     this.initialDir;
+    this.setWalls;
 }
 
 
@@ -16,7 +17,8 @@ function storeLevels() {
     levels[0] = new Level();
     levels[0].lvlCountW = 6;
     levels[0].lvlCountH = 6;
-    levels[0].initialSnake = [[1,1], [0,1], ];
+    levels[0].initialSnake = [[1,1], [0,1]];
+    levels[0].setWalls = [[2,2], [2,3]];
     levels[0].initialDir = 0;
 }
 
@@ -27,6 +29,7 @@ function initLevel(index){
     cellCountW = levels[index].lvlCountW;
     cellCountH = levels[index].lvlCountH;
     snake = dupCoordArray(levels[index].initialSnake);
+    walls = dupCoordArray(levels[index].setWalls);
     dir = levels[index].initialDir;
     genFruit();
     

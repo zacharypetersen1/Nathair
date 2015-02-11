@@ -48,6 +48,10 @@ function checkCollision(checkHere) {
         if(checkHere[0] == snake[i][0] && checkHere[1] == snake[i][1])
             return true;
     }
+    for(i in walls) {
+        if(checkHere[0] == walls[i][0] && checkHere[1] == walls[i][1])
+            return true;
+    }
     
     return false;
 }

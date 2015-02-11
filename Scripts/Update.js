@@ -5,6 +5,7 @@ var wasGrowth;      //an array that stores history of snake's growth
 
 var snake;              //stores position of snake
 var dir;                //current direction of snake's forward-time movement
+var walls;
 var fruitPos;
 var lastHeadPos;        //records last position of snake's head while time is going backwards
 var addToTail = 0;      //If this # is > 0, tail segment will be added

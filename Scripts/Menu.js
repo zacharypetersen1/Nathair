@@ -6,11 +6,18 @@ function menuBuilder(type) {
     var new_menu = new Menu();
     switch(type) {
         case "main_menu":
+            //add Game name
+            temp = new MenuComponent();
+            temp.name = "-Nathair-";
+            temp.x = .5;
+            temp.y = .2;
+            temp.txtSize = .2;
+            new_menu.decoration_components.push(temp);
             //add play button to main menu
             var temp = new MenuComponent();
             temp.name = "Play";
             temp.x = .5;
-            temp.y = .2;
+            temp.y = .35;
             temp.onEvent = function() {
                 currentLevel = 0;
                 initLevel(currentLevel);
@@ -21,9 +28,19 @@ function menuBuilder(type) {
             temp = new MenuComponent();
             temp.name = "Controls";
             temp.x = .5;
-            temp.y = .4;
+            temp.y = .5;
             temp.onEvent = function() {
                 currentState.push(menuBuilder("controls_menu"));
+            };
+            new_menu.selectable_components.push(temp);
+            
+            //add about button
+            temp = new MenuComponent();
+            temp.name = "About";
+            temp.x = .5;
+            temp.y = .65;
+            temp.onEvent = function() {
+                currentState.push(menuBuilder("about_menu"));
             };
             new_menu.selectable_components.push(temp);
             
@@ -53,6 +70,88 @@ function menuBuilder(type) {
             temp.y = .6;
             temp.txtSize = .08;
             new_menu.decoration_components.push(temp);
+            break;
+        case "about_menu":
+            //add 'back' button- returns to main menu
+            var temp = new MenuComponent();
+            temp.name = "Back";
+            temp.x = .5;
+            temp.y = .9;
+            temp.onEvent = function() {
+                currentState.pop();
+            };
+            new_menu.selectable_components.push(temp);
+            //add controls info
+            temp = new MenuComponent();
+            temp.name = "Nathair is the Irish word for 'Snake'.";
+            temp.x = .5;
+            temp.y = .1;
+            temp.txtSize = .06;
+            new_menu.decoration_components.push(temp);
+            //add controls info
+            temp = new MenuComponent();
+            temp.name = "In this game- reminiscent of classic";
+            temp.x = .5;
+            temp.y = .2;
+            temp.txtSize = .06;
+            new_menu.decoration_components.push(temp);
+            temp = new MenuComponent();
+            temp.name = "snake- you try to grow until filling";
+            temp.x = .5;
+            temp.y = .3;
+            temp.txtSize = .06;
+            new_menu.decoration_components.push(temp);
+            temp = new MenuComponent();
+            temp.name = "the entire screen. If you get stuck,";
+            temp.x = .5;
+            temp.y = .4;
+            temp.txtSize = .06;
+            new_menu.decoration_components.push(temp);
+            temp = new MenuComponent();
+            temp.name = "just hold 'R' to re-wind time!";
+            temp.x = .5;
+            temp.y = .5;
+            temp.txtSize = .06;
+            new_menu.decoration_components.push(temp);
+            
+            break;
+        case "pause_menu" :
+         
+            //add Game name
+            temp = new MenuComponent();
+            temp.name = "-Pause-";
+            temp.x = .5;
+            temp.y = .2;
+            temp.txtSize = .15;
+            new_menu.decoration_components.push(temp);
+            //add resume button
+            temp = new MenuComponent();
+            temp.name = "Resume";
+            temp.x = .5;
+            temp.y = .45;
+            temp.onEvent = function() {
+                currentState.pop();
+            };
+            new_menu.selectable_components.push(temp);
+            //add controls button
+            temp = new MenuComponent();
+            temp.name = "Controls";
+            temp.x = .5;
+            temp.y = .6;
+            temp.onEvent = function() {
+                currentState.push(menuBuilder("controls_menu"));
+            };
+            new_menu.selectable_components.push(temp);
+            
+            //add about button
+            temp = new MenuComponent();
+            temp.name = "About";
+            temp.x = .5;
+            temp.y = .75;
+            temp.onEvent = function() {
+                currentState.push(menuBuilder("about_menu"));
+            };
+            new_menu.selectable_components.push(temp);
             break;
     }
     //return the new menu object

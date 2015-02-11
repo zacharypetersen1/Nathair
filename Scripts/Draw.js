@@ -38,6 +38,7 @@ function draw() {
     //draw background
     drawBG(rgbToHex(255,255,255));
     drawGrid();
+    drawWalls();
     drawSnake();
     drawFruit(fruitPos);
 }
@@ -87,12 +88,22 @@ function drawGrid() {
 }
 
 
+//Draws all walls
+function drawWalls() {
+    ctx.fillStyle = rgbToHex(100,100,100);
+    for(i in walls) {
+        ctx.fillRect(walls[i][0]*cellSize+gridLnSize/2, walls[i][1]*cellSize+gridLnSize/2,
+                     cellSize-gridLnSize,cellSize-gridLnSize);
+    }
+}
+
+
 //Draws fruit at specified location
 function drawFruit(position) {
-    ctx.fillStyle = rgbToHex(160, 80, 80);
+    ctx.fillStyle = rgbToHex(255, 80, 80);
     ctx.beginPath();
     ctx.arc(gridX + position[0]*cellSize+cellSize/2, gridY+position[1]*cellSize+cellSize/2,
-            cellSize/2, 0, Math.PI*2);
+            cellSize/3, 0, Math.PI*2);
     ctx.fill();
 }
 
