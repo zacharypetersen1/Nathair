@@ -1,35 +1,35 @@
 //Contains utility drawing methods along with draw() function called from InGameState
 
 var pattern_horiz = new Image();
-pattern_horiz.src = "pattern_horiz.png";
+pattern_horiz.src = "Images/pattern_horiz.png";
 var pattern_vert = new Image();
-pattern_vert.src = "pattern_vert.png";
+pattern_vert.src = "Images/pattern_vert.png";
 var pattern_c02 = new Image();          //Corner of direction 0 and 2
-pattern_c02.src = "pattern_c02.png";
+pattern_c02.src = "Images/pattern_c02.png";
 var pattern_c06 = new Image();          //Corner of direction 0 and 6
-pattern_c06.src = "pattern_c06.png";
+pattern_c06.src = "Images/pattern_c06.png";
 var pattern_c24 = new Image();          //Corner of direction 2 and 4
-pattern_c24.src = "pattern_c24.png";
+pattern_c24.src = "Images/pattern_c24.png";
 var pattern_c46 = new Image();          //Corner of direction 4 and 6
-pattern_c46.src = "pattern_c46.png";
+pattern_c46.src = "Images/pattern_c46.png";
 
 var head_0 = new Image();
-head_0.src = "head_0.png";
+head_0.src = "Images//head_0.png";
 var head_2 = new Image();
-head_2.src = "head_2.png";
+head_2.src = "Images//head_2.png";
 var head_4 = new Image();
-head_4.src = "head_4.png";
+head_4.src = "Images//head_4.png";
 var head_6 = new Image();
-head_6.src = "head_6.png";
+head_6.src = "Images//head_6.png";
 
 var tail_0 = new Image();
-tail_0.src = "tail_0.png";
+tail_0.src = "Images/tail_0.png";
 var tail_2 = new Image();
-tail_2.src = "tail_2.png";
+tail_2.src = "Images/tail_2.png";
 var tail_4 = new Image();
-tail_4.src = "tail_4.png";
+tail_4.src = "Images/tail_4.png";
 var tail_6 = new Image();
-tail_6.src = "tail_6.png";
+tail_6.src = "Images/tail_6.png";
 
 
 
