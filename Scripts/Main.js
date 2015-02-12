@@ -10,7 +10,7 @@ var gameTimeState = 0; //0=forward time - 1=backward time - 2=stuck- game time i
 var pastTime, curTime, deltaTime;   //store time at which each frame is called
 var updAfter = 200, sinceLastUpd;  //time increment for update and time since last update
 var drawTime, drawInterval = 2000, drawScalar; //used for pulsing draw effects
-var currentLvl = 0;
+var currentLvl;
 
 //Sets up canvas for the game
 function initDocument() {

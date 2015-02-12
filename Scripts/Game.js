@@ -23,6 +23,9 @@ function InGameState() {
         if(e.keyCode == 27)  
             currentState.push(menuBuilder("pause_menu"));
             
+        if(e.keyCode == 76)
+            currentState.push(menuBuilder("levelComplete_menu")); 
+            
         if(e.keyCode == 82)
             gameTimeState = 1;
         //Check for direction change if gameState is "forward time"

@@ -9,8 +9,20 @@ var walls;
 var fruitPos;
 var lastHeadPos;        //records last position of snake's head while time is going backwards
 var addToTail = 0;      //If this # is > 0, tail segment will be added
+var openCells;          //Used to check if snake fills entire level
 
 function update() {
+
+    //check if level is complete
+    if(snake.length == openCells) {
+        //check if whole game is complete
+        if(currentLvl == levels.length-1)
+            currentState.push(menuBuilder("gameComplete_menu"));
+        else
+            currentState.push(menuBuilder("levelComplete_menu"));
+        return;
+    }
+    
     //This block runs if game is moving in forward time
     if(gameTimeState == 0) {
         

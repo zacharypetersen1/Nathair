@@ -14,13 +14,13 @@ var pattern_c46 = new Image();          //Corner of direction 4 and 6
 pattern_c46.src = "Images/pattern_c46.png";
 
 var head_0 = new Image();
-head_0.src = "Images//head_0.png";
+head_0.src = "Images/head_0.png";
 var head_2 = new Image();
-head_2.src = "Images//head_2.png";
+head_2.src = "Images/head_2.png";
 var head_4 = new Image();
-head_4.src = "Images//head_4.png";
+head_4.src = "Images/head_4.png";
 var head_6 = new Image();
-head_6.src = "Images//head_6.png";
+head_6.src = "Images/head_6.png";
 
 var tail_0 = new Image();
 tail_0.src = "Images/tail_0.png";
